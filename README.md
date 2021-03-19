@@ -1,6 +1,6 @@
 # Welcome to the Whatever Nicholaus will name this Starfinder Game
 
-## Sessions
+## Story
 * **March 19<sup>th</sup>, 2021**
 
 ## Characters
