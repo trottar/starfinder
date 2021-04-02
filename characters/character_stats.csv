@@ -1,5 +1,5 @@
 ﻿,LVL,Speed,STR,DEX,CON,INT,WIS,CHA,INIT,SP,HP,RP,EAC,KAC,FORT,REFLEX,WILL,Melee,Range,Throw,Weapons,Acrobatics,Athletics,Bluff,Computers,Culture,Diplomacy,Disguise,Engineering,Intimidate,Life Science,Medicine,Mysticism,Perception,Physical Science,Piloting,Sense Motive,Sleight of Hand,Stealth,Survival,Professions
-Kyli Ren,1,20,15,12,14,10,11,11,1,9,11,3,12,14,4,3,0,4,2,4,{'Longsword' : '1d8 S'},2,4,1,0,0,0,0,0,4,0,0,4,4,0,1,0,0,0,4,
+Kyli Ren,2,20,15,12,14,10,11,11,1,16,18,3,12,14,5,4,0,4,3,4,{'Longsword' : '1d8 S'},3,4,2,0,0,0,0,0,5,0,0,5,5,0,1,0,0,0,5,
 Mivyral,1,30,10,10,8,12,10,13,1,5,10,2,11,12,-1,3,3,0,1,0,"{'Tactical Dueling Sword' : '1d6 S', 'Azimuth Lazer Pistol' : '1d4 F'}",5,0,9,6,6,7,9,0,3,0,6,0,1,0,5,5,0,5,1,Acting - 0
 Orion,1,30,11,13,10,16,15,4,1,6,10,3,12,13,0,1,4,0,1,0,"{'Knife, Survival' : '1d4 S'}",1,0,1,3,7,1,1,3,1,3,3,6,2,4,5,2,1,1,6,
 Pabu,1,30,10,15,10,12,10,16,2,6,8,2,13,14,0,2,0,0,2,0,"{'Knife, Survival' : '1d4 S',  'Azimuth Lazer Pistol' : '1d4 F', 'Frag Grenade' : '1d6 P', 'Stickybomb Grenade' : '+2 AB'}",2,4,3,6,0,3,3,6,3,5,0,0,0,0,2,0,0,2,0,Maintenance Worker - 5
