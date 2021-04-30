@@ -1,1 +1,2 @@
-﻿LVL,STR,DEX,CON,INT,WIS,CHA,INIT,SP,HP,RP,EAC,KAC,FORT,REFLEX,WILL,Melee,Range,Throw,Weapons,Acrobatics,Athletics,Bluff,Computers,Culture,Diplomacy,Disguise,Engineering,Intimidate,Life Science,Medicine,Mysticism,Perception,Physical Science,Piloting,Sense Motive,Sleight of Hand,Stealth,Survival,Professions
+﻿,discord,lvl,speed,str,dex,con,int,wis,cha,init,sp,hp,rp,eac,kac,fort,reflex,will,melee,range,throw,weapons,acrobatics,athletics,bluff,computers,culture,diplomacy,disguise,engineering,intimidate,life science,medicine,mysticism,perception,physical science,piloting,sense motive,sleight of hand,stealth,survival,professions
+test,piezoo2#0079,2,20,15,12,14,10,11,11,1,16,18,3,12,14,5,4,0,4,3,4,{'Longsword' : '1d8 S'},3,4,2,0,0,0,0,0,5,0,0,5,5,0,1,0,0,0,5,-

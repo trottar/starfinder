@@ -19,7 +19,21 @@
     * Went to the lunch room and defeated robots
     * Going to the library now
 * **April 16<sup>th</sup>, 2021**   
-    *
+    * The group fought a sniper and found 'Reginald' in a jail cell
+    * They were attacked by an elf who killed Treyton (who Orion tried to resurrect)
+        * The elf escapes and the floor gives out, leaving them with the Puzzler
+        * He leads them through a few rooms
+        * In the final room Orion hears "Ren" which leads her to a secret room
+    * The secret room has a desk and a computer
+        * Kyli takes a mysterious book that calls out to her
+        * Pabu hacks the computer and they escape
+    * The elf dies for some reason outside the ship
+    * Kyli yells at 'Reginald' for almost getting Pabu killed and tells him to leave
+        * Orion convinces 'Reginald' to stay but Kyli refuses to help him anymore
+    * Kevin calls Kyli and is mad that she tried to kill Daphne
+        * Kyli hangs up on him and he shuts down the whole ship
+        * Pabu tries to hack the ship but Tammy is replaced by many Kortanas
+        * Tammy from the Spirit Falls Universe (SFU) shows up and takes them to 'Reginald's' safe planet
 
 ## Characters
 * **[Kyli Ren](characters/kyli_ren.pdf)**
