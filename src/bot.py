@@ -44,6 +44,7 @@ async def initializeRoll(ctx, npc_mentions, npc_rolls, *mentions: discord.Member
 		if message.channel == ctx.channel and message.author in mentions :
 			character = ""
 			for key, val in combat.char_stat["discord"].items():
+				print(mentions[0],"=?=",val)
 				if str(mentions[0]) == val:
 					character = key
 			init_roll = combat.initialize(character, int(message.content), bonus=0)
@@ -120,9 +121,9 @@ async def statcheck(ctx, stat=None):
 	response = combat.stat_check(character, stat)
 	await ctx.send(response)	
 	
-@bot.command(name='item', help='Check the stats of an item')
-async def itemcheck(ctx, item):
-
+@bot.command(name='item', help='Check the stats of an item, use format from handbook \n e.g. flare axe, blue star')
+async def itemcheck(ctx, *item):
+	item = ' '.join(item)
 	response = combat.item_check(item)
 	await ctx.send(response)	
 
@@ -174,4 +175,64 @@ async def plagueis(ctx):
 	await asyncio.sleep(5.0)
 	await vc.disconnect()	
 	
+@bot.command(name='good', hidden=True)
+async def good(ctx):
+	await ctx.send(file=discord.File('var/good.gif'))
+    # grab the user who sent the command
+	author = ctx.message.author
+	channel = author.voice.channel
+	vc= await channel.connect()
+	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/good.mp3'), after=lambda e: print('done', e))
+	# Sleep while audio is playing.
+	await asyncio.sleep(5.0)
+	await vc.disconnect()		
+
+@bot.command(name='youwilldie', hidden=True)
+async def youwilldie(ctx):
+	await ctx.send(file=discord.File('var/youwilldie.gif'))
+    # grab the user who sent the command
+	author = ctx.message.author
+	channel = author.voice.channel
+	vc= await channel.connect()
+	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/youwilldie.mp3'), after=lambda e: print('done', e))
+	# Sleep while audio is playing.
+	await asyncio.sleep(8.0)
+	await vc.disconnect()		
+		
+@bot.command(name='democracy', hidden=True)
+async def democracy(ctx):
+	await ctx.send(file=discord.File('var/democracy.gif'))
+    # grab the user who sent the command
+	author = ctx.message.author
+	channel = author.voice.channel
+	vc= await channel.connect()
+	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/democracy.mp3'), after=lambda e: print('done', e))
+	# Sleep while audio is playing.
+	await asyncio.sleep(5.0)
+	await vc.disconnect()	
+
+@bot.command(name='senate', hidden=True)
+async def senate(ctx):
+	await ctx.send(file=discord.File('var/senate.gif'))
+    # grab the user who sent the command
+	author = ctx.message.author
+	channel = author.voice.channel
+	vc= await channel.connect()
+	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/senate.mp3'), after=lambda e: print('done', e))
+	# Sleep while audio is playing.
+	await asyncio.sleep(5.0)
+	await vc.disconnect()	
+	
+@bot.command(name='walkinghere', hidden=True)
+async def walkinghere(ctx):
+	await ctx.send(file=discord.File('var/walkinghere.gif'))
+    # grab the user who sent the command
+	author = ctx.message.author
+	channel = author.voice.channel
+	vc= await channel.connect()
+	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/walkinghere.mp3'), after=lambda e: print('done', e))
+	# Sleep while audio is playing.
+	await asyncio.sleep(5.0)
+	await vc.disconnect()		
+		
 bot.run(TOKEN)    
