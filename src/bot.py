@@ -11,11 +11,11 @@
 # Copyright (c) trottar
 #
 import os, asyncio
-import starfinder_combat as combat
+import starfindercombat as combat
 
 import discord
 from dotenv import load_dotenv
-
+ 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
@@ -125,114 +125,104 @@ async def statcheck(ctx, stat=None):
 async def itemcheck(ctx, *item):
 	item = ' '.join(item)
 	response = combat.item_check(item)
-	await ctx.send(response)	
+	await ctx.send(response)
 
-@bot.command(name='power', hidden=True)
-async def unlimitedpower(ctx):
-	await ctx.send(file=discord.File('var/unlimitedpower.gif'))
+voice_commands = ['unlimitedpower','doit','order66','plagueis','good','youwilldie','democracy',
+					'senate','walkinghere','vader_no','kill_him','apprentice','dont_kill_me','treason','focus']
+
+@bot.command(name='palpatine', help='Palpatine voice lines avaliable')
+async def palpatine(ctx, voice_commands):
+	for response in voice_commands:
+		await ctx.send(f'{response}')	
+
+@bot.command(name='voice', hidden=True)
+async def voiceBot(ctx, voice_command):
+	await ctx.send(file=discord.File('var/{}.gif'.format(voice_command)))
     # grab the user who sent the command
 	author = ctx.message.author
 	channel = author.voice.channel
 	vc= await channel.connect()
-	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/unlimitedpower.mp3'), after=lambda e: print('done', e))
+	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/{}.mp3'.format(voice_command)), after=lambda e: print('done', e))
 	# Sleep while audio is playing.
 	await asyncio.sleep(8.0)
 	await vc.disconnect()
 
-@bot.command(name='doit', hidden=True)
-async def doit(ctx):
-	await ctx.send(file=discord.File('var/doit.gif'))
-    # grab the user who sent the command
-	author = ctx.message.author
-	channel = author.voice.channel
-	vc= await channel.connect()
-	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/doit.mp3'), after=lambda e: print('done', e))
-	# Sleep while audio is playing.
-	await asyncio.sleep(3.0)
-	await vc.disconnect()	
+#'''
+from config import config
+from musicbot.audiocontroller import AudioController
+from musicbot.settings import Settings
+from musicbot.utils import guild_to_audiocontroller, guild_to_settings
 
-@bot.command(name='order66', hidden=True)
-async def order66(ctx):
-	await ctx.send(file=discord.File('var/order66.gif'))
-    # grab the user who sent the command
-	author = ctx.message.author
-	channel = author.voice.channel
-	vc= await channel.connect()
-	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/order66.mp3'), after=lambda e: print('done', e))
-	# Sleep while audio is playing.
-	await asyncio.sleep(5.0)
-	await vc.disconnect()
-	
-@bot.command(name='plagueis', hidden=True)
-async def plagueis(ctx):
-	await ctx.send(file=discord.File('var/plagueis.gif'))
-    # grab the user who sent the command
-	author = ctx.message.author
-	channel = author.voice.channel
-	vc= await channel.connect()
-	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/plagueis.mp3'), after=lambda e: print('done', e))
-	# Sleep while audio is playing.
-	await asyncio.sleep(5.0)
-	await vc.disconnect()	
-	
-@bot.command(name='good', hidden=True)
-async def good(ctx):
-	await ctx.send(file=discord.File('var/good.gif'))
-    # grab the user who sent the command
-	author = ctx.message.author
-	channel = author.voice.channel
-	vc= await channel.connect()
-	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/good.mp3'), after=lambda e: print('done', e))
-	# Sleep while audio is playing.
-	await asyncio.sleep(5.0)
-	await vc.disconnect()		
+initial_extensions = ['musicbot.commands.music',
+                      'musicbot.commands.general', 'musicbot.plugins.button']
+bot = commands.Bot(command_prefix=config.BOT_PREFIX,
+                   pm_help=True, case_insensitive=True)
 
-@bot.command(name='youwilldie', hidden=True)
-async def youwilldie(ctx):
-	await ctx.send(file=discord.File('var/youwilldie.gif'))
-    # grab the user who sent the command
-	author = ctx.message.author
-	channel = author.voice.channel
-	vc= await channel.connect()
-	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/youwilldie.mp3'), after=lambda e: print('done', e))
-	# Sleep while audio is playing.
-	await asyncio.sleep(8.0)
-	await vc.disconnect()		
-		
-@bot.command(name='democracy', hidden=True)
-async def democracy(ctx):
-	await ctx.send(file=discord.File('var/democracy.gif'))
-    # grab the user who sent the command
-	author = ctx.message.author
-	channel = author.voice.channel
-	vc= await channel.connect()
-	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/democracy.mp3'), after=lambda e: print('done', e))
-	# Sleep while audio is playing.
-	await asyncio.sleep(5.0)
-	await vc.disconnect()	
 
-@bot.command(name='senate', hidden=True)
-async def senate(ctx):
-	await ctx.send(file=discord.File('var/senate.gif'))
-    # grab the user who sent the command
-	author = ctx.message.author
-	channel = author.voice.channel
-	vc= await channel.connect()
-	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/senate.mp3'), after=lambda e: print('done', e))
-	# Sleep while audio is playing.
-	await asyncio.sleep(5.0)
-	await vc.disconnect()	
-	
-@bot.command(name='walkinghere', hidden=True)
-async def walkinghere(ctx):
-	await ctx.send(file=discord.File('var/walkinghere.gif'))
-    # grab the user who sent the command
-	author = ctx.message.author
-	channel = author.voice.channel
-	vc= await channel.connect()
-	vc.play(discord.FFmpegPCMAudio(executable='ffmpeg/bin/ffmpeg.exe',source='var/walkinghere.mp3'), after=lambda e: print('done', e))
-	# Sleep while audio is playing.
-	await asyncio.sleep(5.0)
-	await vc.disconnect()		
-		
-bot.run(TOKEN)    
+if __name__ == '__main__':
+
+    config.ABSOLUTE_PATH = os.path.dirname(os.path.abspath(__file__))
+    config.COOKIE_PATH = config.ABSOLUTE_PATH + config.COOKIE_PATH
+
+    if config.BOT_TOKEN == "":
+        print("Error: No bot token!")
+        exit
+
+    for extension in initial_extensions:
+        try:
+            bot.load_extension(extension)
+        except Exception as e:
+            print(e)
+
+
+@bot.event
+async def on_ready():
+    print(config.STARTUP_MESSAGE)
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game(name="Music, type {}help".format(config.BOT_PREFIX)))
+
+    for guild in bot.guilds:
+        await register(guild)
+        print("Joined {}".format(guild.name))
+
+    print(config.STARTUP_COMPLETE_MESSAGE)
+
+
+@bot.event
+async def on_guild_join(guild):
+    print(guild.name)
+    await register(guild)
+
+
+async def register(guild):
+
+    guild_to_settings[guild] = Settings(guild)
+    guild_to_audiocontroller[guild] = AudioController(bot, guild)
+
+    sett = guild_to_settings[guild]
+
+    try:
+        await guild.me.edit(nick=sett.get('default_nickname'))
+    except:
+        pass
+
+    if config.GLOBAL_DISABLE_AUTOJOIN_VC == True:
+        return
+
+    vc_channels = guild.voice_channels
+
+    if sett.get('vc_timeout') == False:
+        if sett.get('start_voice_channel') == None:
+            try:
+                await guild_to_audiocontroller[guild].register_voice_channel(guild.voice_channels[0])
+            except Exception as e:
+                print(e)
+
+        else:
+            for vc in vc_channels:
+                if vc.id == sett.get('start_voice_channel'):
+                    try:
+                        await guild_to_audiocontroller[guild].register_voice_channel(vc_channels[vc_channels.index(vc)])
+                    except Exception as e:
+                        print(e)
+#'''
+bot.run(TOKEN, bot=True, reconnect=True)
