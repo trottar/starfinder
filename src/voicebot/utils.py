@@ -10,6 +10,7 @@ guild_to_settings = {}
 
 def get_guild(bot, command):
     """Gets the guild a command belongs to. Useful, if the command was sent via pm."""
+    
     if command.guild is not None:
         return command.guild
     for guild in bot.guilds:

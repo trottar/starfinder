@@ -5,9 +5,9 @@ import discord
 import yt_dlp
 from config import config
 
-from musicbot import linkutils, utils
-from musicbot.playlist import Playlist
-from musicbot.songinfo import Song
+from voicebot import linkutils, utils
+from voicebot.playlist import Playlist
+from voicebot.songinfo import Song
 
 
 class AudioController(object):
@@ -77,10 +77,8 @@ class AudioController(object):
                 conversion = self.search_youtube(await linkutils.convert_spotify(song.info.webpage_url))
                 song.info.webpage_url = conversion
 
-            downloader = yt_dlp.YoutubeDL(
-                {'format': 'bestaudio', 'title': True, "cookiefile": config.COOKIE_PATH})
-            r = downloader.extract_info(
-                song.info.webpage_url, download=False)
+            downloader = yt_dlp.YoutubeDL({'format': 'bestaudio', 'title': True, "cookiefile": config.COOKIE_PATH})
+            r = downloader.extract_info(song.info.webpage_url, download=False)
 
             song.base_url = r.get('url')
             song.info.uploader = r.get('uploader')
@@ -94,8 +92,7 @@ class AudioController(object):
 
         self.playlist.playhistory.append(self.current_song)
 
-        self.guild.voice_client.play(discord.FFmpegPCMAudio(
-            song.base_url, before_options='-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'), after=lambda e: self.next_song(e))
+        self.guild.voice_client.play(discord.FFmpegPCMAudio(song.base_url, before_options='-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'), after=lambda e: self.next_song(e))
 
         self.guild.voice_client.source = discord.PCMVolumeTransformer(
             self.guild.voice_client.source)
@@ -282,6 +279,22 @@ class AudioController(object):
 
         return "https://www.youtube.com/watch?v={}".format(videocode)
 
+    async def pause_played(self,voice_command):
+        """Pauses the player"""
+
+        self.guild.voice_client.pause()
+        await asyncio.sleep(1.0)
+        self.guild.voice_client.play(discord.FFmpegPCMAudio(executable='/usr/bin/ffmpeg',source='var/{}.mp3'.format(voice_command)), after=lambda e: print('done', e))
+        await asyncio.sleep(1.0)
+        self.guild.voice_client.resume()
+        #self.guild.voice_client.play(discord.FFmpegPCMAudio(song.base_url, before_options='-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'), after=lambda e: self.next_song(e))
+        
+    async def resume_played(self):
+        """Resume the player"""
+
+        self.guild.voice_client.resume()
+        #self.guild.voice_client.play(self.current_song)
+    
     async def stop_player(self):
         """Stops the player and removes all songs from the queue"""
         if self.guild.voice_client is None or (

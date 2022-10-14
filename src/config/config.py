@@ -1,6 +1,8 @@
-BOT_TOKEN: str = ""
-SPOTIFY_ID: str = ""
-SPOTIFY_SECRET: str = ""
+import os
+
+BOT_TOKEN: str = os.getenv('DISCORD_TOKEN')
+SPOTIFY_ID: str = os.getenv('SPOTIFY_ID')
+SPOTIFY_SECRET: str = os.getenv('SPOTIFY_SECRET')
 
 BOT_PREFIX = "$"
 
@@ -8,7 +10,7 @@ EMBED_COLOR = 0x4dd4d0  #replace after'0x' with desired hex code ex. '#ff0188' >
 
 SUPPORTED_EXTENSIONS = ('.webm', '.mp4', '.mp3', '.avi', '.wav', '.m4v', '.ogg', '.mov')
 
-MAX_SONG_PRELOAD = 5  #maximum of 25
+MAX_SONG_PRELOAD = 10  #maximum of 25
 
 COOKIE_PATH = "/config/cookies/cookies.txt"
 
@@ -89,5 +91,9 @@ HELP_SHUFFLE_SHORT = "Shuffle the queue"
 HELP_SHUFFLE_LONG = "Randomly sort the songs in the current queue"
 HELP_CHANGECHANNEL_SHORT = "Change the bot channel"
 HELP_CHANGECHANNEL_LONG = "Change the bot channel to the VC you are in"
+HELP_PALPATINE_SHORT = "The dead speak!" 
+HELP_PALPATINE_LONG = "Emperor Palpatine speaks from beyond the grave."
 
 ABSOLUTE_PATH = '' #do not modify
+
+VOICE_COMMANDS = ('unlimitedpower','doit','order66','plagueis','good','youwilldie','democracy','senate','walkinghere','vader_no','kill_him','apprentice','dont_kill_me','treason','focus')

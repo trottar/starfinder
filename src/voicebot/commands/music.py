@@ -3,8 +3,7 @@ import asyncio
 import discord
 from config import config
 from discord.ext import commands
-from musicbot import linkutils, utils
-
+from voicebot import linkutils, utils
 
 class Music(commands.Cog):
     """ A collection of the commands related to music playback.
@@ -22,6 +21,7 @@ class Music(commands.Cog):
         current_guild = utils.get_guild(self.bot, ctx.message)
         audiocontroller = utils.guild_to_audiocontroller[current_guild]
 
+        # HERE
         if(await utils.is_connected(ctx) == None):
             if await audiocontroller.uconnect(ctx) == False:
                 return
@@ -29,8 +29,9 @@ class Music(commands.Cog):
         if track.isspace() or not track:
             return
 
-        if await utils.play_check(ctx) == False:
-            return
+        # HERE
+        #if await utils.play_check(ctx) == False:
+        #    return
 
         # reset timer
         audiocontroller.timer.cancel()
@@ -116,8 +117,9 @@ class Music(commands.Cog):
     async def _queue(self, ctx):
         current_guild = utils.get_guild(self.bot, ctx.message)
 
-        if await utils.play_check(ctx) == False:
-            return
+        # HERE
+        #if await utils.play_check(ctx) == False:
+        #    return
 
         if current_guild is None:
             await ctx.send(config.NO_GUILD_MESSAGE)
@@ -132,8 +134,8 @@ class Music(commands.Cog):
         if config.MAX_SONG_PRELOAD > 25:
             config.MAX_SONG_PRELOAD = 25
 
-        embed = discord.Embed(title=":scroll: Queue [{}]".format(
-            len(playlist.playque)), color=config.EMBED_COLOR, inline=False)
+        #embed = discord.Embed(title=":scroll: Queue [{}]".format(len(playlist.playque)), color=config.EMBED_COLOR, inline=False)
+        embed = discord.Embed(title=":scroll: Queue [{}]".format(len(playlist.playque)), color=config.EMBED_COLOR)
 
         for counter, song in enumerate(list(playlist.playque)[:config.MAX_SONG_PRELOAD], start=1):
             if song.info.title is None:
@@ -160,7 +162,7 @@ class Music(commands.Cog):
         await utils.guild_to_audiocontroller[current_guild].stop_player()
         await ctx.send("Stopped all sessions :octagonal_sign:")
 
-    @commands.command(name='skip', description=config.HELP_SKIP_LONG, help=config.HELP_SKIP_SHORT, aliases=['s'])
+    @commands.command(name='skip', description=config.HELP_SKIP_LONG, help=config.HELP_SKIP_SHORT, aliases=['s','next','n'])
     async def _skip(self, ctx):
         current_guild = utils.get_guild(self.bot, ctx.message)
 

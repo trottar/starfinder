@@ -8,18 +8,13 @@ from config import config
 from spotipy.oauth2 import SpotifyClientCredentials
 
 try:
-    sp_api = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
-        client_id=config.SPOTIFY_ID, client_secret=config.SPOTIFY_SECRET))
+    sp_api = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=config.SPOTIFY_ID, client_secret=config.SPOTIFY_SECRET))
     api = True
 except:
     api = False
 
 url_regex = re.compile(
     "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+")
-
-session = aiohttp.ClientSession(
-    headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'})
-
 
 def clean_sclink(track):
     if track.startswith("https://m."):
@@ -30,6 +25,8 @@ def clean_sclink(track):
 
 
 async def convert_spotify(url):
+
+    session = aiohttp.ClientSession(headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.5195.102 Safari/537.36'})
 
     if re.search(url_regex, url):
         result = url_regex.search(url)
@@ -53,6 +50,7 @@ async def convert_spotify(url):
 async def get_spotify_playlist(url):
     """Return Spotify_Playlist class"""
 
+    session = aiohttp.ClientSession(headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.5195.102 Safari/537.36'})
     code = url.split('/')[4].split('?')[0]
 
     if api == True:
