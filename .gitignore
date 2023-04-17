@@ -1,2 +1,4 @@
 .ipynb_checkpoints
 src/.env
+__pycache__/
+*.cache
